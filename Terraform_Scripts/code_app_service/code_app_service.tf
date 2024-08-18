@@ -4,13 +4,13 @@ provider "azurerm" {
 
 # Define the Resource Group
 resource "azurerm_resource_group" "example" {
-  name     = "rg-bookportal-resources"
+  name     = "rg-resource-discountportal"
   location = "East US"  # Replace with your desired location
 }
 
 # Define the Standard App Service Plan
 resource "azurerm_app_service_plan" "standard_plan" {
-  name                = "rg-bookportal-app-service-plan"
+  name                = "rg-discountportal-app-plan"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   kind                = "App"
@@ -23,7 +23,7 @@ resource "azurerm_app_service_plan" "standard_plan" {
 
 # Define the Code-based App Service
 resource "azurerm_app_service" "code_service" {
-  name                = "rg-bookportal-code-app-service"
+  name                = "rg-discountportal-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   app_service_plan_id = azurerm_app_service_plan.standard_plan.id
