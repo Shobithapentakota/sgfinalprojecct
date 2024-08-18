@@ -1,11 +1,10 @@
-# Use the .NET 8.0 ASP.NET runtime image for Linux
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+# Use a Windows-based .NET image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-windowsservercore-ltsc2022 AS base
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-# Use the .NET 8.0 SDK image for building the application
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-windowsservercore-ltsc2022 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["DiscountPortel/DiscountPortel.csproj", "DiscountPortel/"]
@@ -14,12 +13,10 @@ COPY . .
 WORKDIR "/src/DiscountPortel"
 RUN dotnet build "./DiscountPortel.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Publish the application
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./DiscountPortel.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Create the final image from the base image and copy the published output
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
