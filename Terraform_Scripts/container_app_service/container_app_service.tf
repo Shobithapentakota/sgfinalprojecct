@@ -25,7 +25,7 @@ resource "azurerm_app_service" "container_service" {
   app_service_plan_id = azurerm_service_plan.linux_plan.id
 
   site_config {
-    linux_fx_version = "DOCKER|sgtrainingacr.azurecr.io/sgdiscountportal:Latest" # No Docker image specified
+    linux_fx_version = "" # No Docker image specified
   }
 }
 
