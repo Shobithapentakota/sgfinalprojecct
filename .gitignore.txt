@@ -1,0 +1,12 @@
+# Terraform files to ignore
+.terraform/
+*.tfstate
+.tfstate.
+.terraform.lock.hcl
+
+# Build and debug folders (from .NET)
+bin/
+obj/
+.vs/
+*.user
+*.suo

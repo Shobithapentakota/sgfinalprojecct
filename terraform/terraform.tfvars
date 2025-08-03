@@ -1,0 +1,12 @@
+db_password     = "Shobitha@2004"
+resource_group  = "shobi-rg"
+location        = "West Europe"
+vnet            = "s_vnet"
+private_subnet  = "s_private_subnet"
+public_subnet   = "s_public_subnet"
+appservice_plan = "s_app_plan"
+webapp          = "s-wed-app"
+postgres        = "s-postgres-ci"
+location2       = "centralindia"
+acr_name         = "shobiacr"
+
